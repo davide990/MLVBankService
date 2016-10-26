@@ -6,6 +6,7 @@
 package com.upem.project;
 
 import com.davide.test.Compte;
+import java.util.HashMap;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -17,9 +18,10 @@ import javax.jws.WebParam;
 @WebService(serviceName = "BankService")
 public class BankService {
 
-    //private final HashMap<int, int> ints;
+    private final HashMap<Integer, Compte> comptes;
+    
     public BankService() {
-//        ints = new HashMap<>();
+        comptes = new HashMap<>();
     }
 
     /**
