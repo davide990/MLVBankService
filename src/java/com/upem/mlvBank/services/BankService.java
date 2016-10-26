@@ -8,7 +8,6 @@ package com.upem.mlvBank.services;
 import com.upem.mlvBank.entities.Compte;
 import com.upem.mlvBank.dao.CompteDAO;
 import java.util.HashMap;
-import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
