@@ -5,18 +5,41 @@
  */
 package com.davide.test;
 
+import java.io.Serializable;
 import java.util.UUID;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author davide
  */
-public class Compte {
+@Entity
+@Table(name = "cars")
+public class Compte implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private long persistence_id;
+    @Column(name = "amount")
     private int amount;
+    @Column(name = "compteID")
     private final String id;
+    @Column(name = "disabled")
     private boolean disabled;
+    @Column(name = "owner")
     private String owner;
+    @Column(name = "comptePassword")
     private String comptePassword;
 
     public Compte() {
