@@ -6,6 +6,12 @@
       <xsd:import namespace="http://project.upem.com/" schemaLocation="BankService_schema1.xsd"/>
     </xsd:schema>
   </types>
+  <message name="WithdrawMoney">
+    <part name="parameters" element="tns:WithdrawMoney"/>
+  </message>
+  <message name="WithdrawMoneyResponse">
+    <part name="parameters" element="tns:WithdrawMoneyResponse"/>
+  </message>
   <message name="AccountState">
     <part name="parameters" element="tns:AccountState"/>
   </message>
@@ -24,19 +30,11 @@
   <message name="OpenNewAccountResponse">
     <part name="parameters" element="tns:OpenNewAccountResponse"/>
   </message>
-  <message name="DisableAccount">
-    <part name="parameters" element="tns:DisableAccount"/>
-  </message>
-  <message name="DisableAccountResponse">
-    <part name="parameters" element="tns:DisableAccountResponse"/>
-  </message>
-  <message name="WithdrawMoney">
-    <part name="parameters" element="tns:WithdrawMoney"/>
-  </message>
-  <message name="WithdrawMoneyResponse">
-    <part name="parameters" element="tns:WithdrawMoneyResponse"/>
-  </message>
   <portType name="BankService">
+    <operation name="WithdrawMoney">
+      <input wsam:Action="http://project.upem.com/BankService/WithdrawMoneyRequest" message="tns:WithdrawMoney"/>
+      <output wsam:Action="http://project.upem.com/BankService/WithdrawMoneyResponse" message="tns:WithdrawMoneyResponse"/>
+    </operation>
     <operation name="AccountState">
       <input wsam:Action="http://project.upem.com/BankService/AccountStateRequest" message="tns:AccountState"/>
       <output wsam:Action="http://project.upem.com/BankService/AccountStateResponse" message="tns:AccountStateResponse"/>
@@ -49,17 +47,18 @@
       <input wsam:Action="http://project.upem.com/BankService/OpenNewAccountRequest" message="tns:OpenNewAccount"/>
       <output wsam:Action="http://project.upem.com/BankService/OpenNewAccountResponse" message="tns:OpenNewAccountResponse"/>
     </operation>
-    <operation name="DisableAccount">
-      <input wsam:Action="http://project.upem.com/BankService/DisableAccountRequest" message="tns:DisableAccount"/>
-      <output wsam:Action="http://project.upem.com/BankService/DisableAccountResponse" message="tns:DisableAccountResponse"/>
-    </operation>
-    <operation name="WithdrawMoney">
-      <input wsam:Action="http://project.upem.com/BankService/WithdrawMoneyRequest" message="tns:WithdrawMoney"/>
-      <output wsam:Action="http://project.upem.com/BankService/WithdrawMoneyResponse" message="tns:WithdrawMoneyResponse"/>
-    </operation>
   </portType>
   <binding name="BankServicePortBinding" type="tns:BankService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="WithdrawMoney">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
     <operation name="AccountState">
       <soap:operation soapAction=""/>
       <input>
@@ -79,24 +78,6 @@
       </output>
     </operation>
     <operation name="OpenNewAccount">
-      <soap:operation soapAction=""/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="DisableAccount">
-      <soap:operation soapAction=""/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="WithdrawMoney">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>

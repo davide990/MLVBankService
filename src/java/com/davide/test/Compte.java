@@ -5,6 +5,8 @@
  */
 package com.davide.test;
 
+import java.util.UUID;
+
 /**
  *
  * @author davide
@@ -12,20 +14,29 @@ package com.davide.test;
 public class Compte {
 
     private int amount;
-    private int id;
+    private final String id;
+    private boolean disabled;
     private String owner;
     private String comptePassword;
 
     public Compte() {
+        disabled = true;
         amount = 0;
+        comptePassword = "";
+        id = UUID.randomUUID().toString();
     }
 
-    public int getId() {
-        return id;
+    public void EnableCompte() {
+        disabled = true;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void DisableCompte() {
+        disabled = false;
+    }
+
+    public String getId() {
+        String a = id;
+        return a;
     }
 
     public String getOwner(String ComptePassword) {
@@ -46,6 +57,10 @@ public class Compte {
     }
 
     public void depositToCompte(String ComptePassword, int amountToDeposit) {
+        if (disabled) {
+            return;
+        }
+
         if (!ComptePassword.equals(this.comptePassword)) {
             return;
         }
@@ -54,6 +69,10 @@ public class Compte {
     }
 
     public void withdrawFromCompte(String ComptePassword, int amountToWithdraw) {
+        if (disabled) {
+            return;
+        }
+
         if (!ComptePassword.equals(this.comptePassword)) {
             return;
         }
