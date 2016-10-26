@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<xs:schema version="1.0" targetNamespace="http://project.upem.com/" xmlns:tns="http://project.upem.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema version="1.0" targetNamespace="http://services.mlvBank.upem.com/" xmlns:tns="http://services.mlvBank.upem.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:element name="AccountState" type="tns:AccountState"/>
 
@@ -16,33 +16,6 @@
   <xs:element name="WithdrawMoney" type="tns:WithdrawMoney"/>
 
   <xs:element name="WithdrawMoneyResponse" type="tns:WithdrawMoneyResponse"/>
-
-  <xs:complexType name="AccountState">
-    <xs:sequence>
-      <xs:element name="AccountStateAccountID" type="xs:string" minOccurs="0"/>
-      <xs:element name="AccountStateOwnerPassword" type="xs:string" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="AccountStateResponse">
-    <xs:sequence>
-      <xs:element name="return" type="xs:int"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="WithdrawMoney">
-    <xs:sequence>
-      <xs:element name="WithDrawMoneyAccountID" type="xs:string" minOccurs="0"/>
-      <xs:element name="WithDrawMoneyOwnerPassword" type="xs:string" minOccurs="0"/>
-      <xs:element name="WithDrawMoneyAmount" type="xs:int"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="WithdrawMoneyResponse">
-    <xs:sequence>
-      <xs:element name="return" type="xs:boolean"/>
-    </xs:sequence>
-  </xs:complexType>
 
   <xs:complexType name="OpenNewAccount">
     <xs:sequence>
@@ -68,6 +41,33 @@
   <xs:complexType name="DepositMoneyResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="WithdrawMoney">
+    <xs:sequence>
+      <xs:element name="WithDrawMoneyAccountID" type="xs:string" minOccurs="0"/>
+      <xs:element name="WithDrawMoneyOwnerPassword" type="xs:string" minOccurs="0"/>
+      <xs:element name="WithDrawMoneyAmount" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="WithdrawMoneyResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AccountState">
+    <xs:sequence>
+      <xs:element name="AccountStateAccountID" type="xs:string" minOccurs="0"/>
+      <xs:element name="AccountStateOwnerPassword" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AccountStateResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
     </xs:sequence>
   </xs:complexType>
 </xs:schema>

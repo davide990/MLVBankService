@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.davide.test;
+package com.upem.mlvBank.entities;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
  * @author davide
  */
 @Entity
-@Table(name = "cars")
+@Table(name = "compte")
 public class Compte implements Serializable {
 
     private static final long serialVersionUID = 1L;

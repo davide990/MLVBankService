@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.upem.project;
+package com.upem.mlvBank.services;
 
-import com.davide.test.Compte;
+import com.upem.mlvBank.entities.Compte;
+import com.upem.mlvBank.dao.CompteDAO;
 import java.util.HashMap;
+import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -17,6 +20,9 @@ import javax.jws.WebParam;
  */
 @WebService(serviceName = "BankService")
 public class BankService {
+
+    @Inject
+    private CompteDAO compteDAO;
 
     private final HashMap<String, Compte> comptes;
 
@@ -79,6 +85,8 @@ public class BankService {
         newCompte.EnableCompte();
         newCompte.setComptePassword("", OwnerPassword);
         newCompte.depositToCompte(OwnerPassword, InitialAmount);
+        
+        compteDAO.create(newCompte);
         
         return newCompte.getId();
     }

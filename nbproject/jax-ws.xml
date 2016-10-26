@@ -2,7 +2,7 @@
 <jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
   <services>
     <service name="BankService">
-      <implementation-class>com.upem.project.BankService</implementation-class>
+      <implementation-class>com.upem.mlvBank.services.BankService</implementation-class>
     </service>
   </services>
   <clients/>
