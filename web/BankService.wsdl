@@ -6,11 +6,11 @@
       <xsd:import namespace="http://services.mlvBank.upem.com/" schemaLocation="BankService_schema1.xsd"/>
     </xsd:schema>
   </types>
-  <message name="WithdrawMoney">
-    <part name="parameters" element="tns:WithdrawMoney"/>
+  <message name="ListAccounts">
+    <part name="parameters" element="tns:ListAccounts"/>
   </message>
-  <message name="WithdrawMoneyResponse">
-    <part name="parameters" element="tns:WithdrawMoneyResponse"/>
+  <message name="ListAccountsResponse">
+    <part name="parameters" element="tns:ListAccountsResponse"/>
   </message>
   <message name="AccountState">
     <part name="parameters" element="tns:AccountState"/>
@@ -30,10 +30,16 @@
   <message name="OpenNewAccountResponse">
     <part name="parameters" element="tns:OpenNewAccountResponse"/>
   </message>
+  <message name="WithdrawMoney">
+    <part name="parameters" element="tns:WithdrawMoney"/>
+  </message>
+  <message name="WithdrawMoneyResponse">
+    <part name="parameters" element="tns:WithdrawMoneyResponse"/>
+  </message>
   <portType name="BankService">
-    <operation name="WithdrawMoney">
-      <input wsam:Action="http://services.mlvBank.upem.com/BankService/WithdrawMoneyRequest" message="tns:WithdrawMoney"/>
-      <output wsam:Action="http://services.mlvBank.upem.com/BankService/WithdrawMoneyResponse" message="tns:WithdrawMoneyResponse"/>
+    <operation name="ListAccounts">
+      <input wsam:Action="http://services.mlvBank.upem.com/BankService/ListAccountsRequest" message="tns:ListAccounts"/>
+      <output wsam:Action="http://services.mlvBank.upem.com/BankService/ListAccountsResponse" message="tns:ListAccountsResponse"/>
     </operation>
     <operation name="AccountState">
       <input wsam:Action="http://services.mlvBank.upem.com/BankService/AccountStateRequest" message="tns:AccountState"/>
@@ -47,10 +53,14 @@
       <input wsam:Action="http://services.mlvBank.upem.com/BankService/OpenNewAccountRequest" message="tns:OpenNewAccount"/>
       <output wsam:Action="http://services.mlvBank.upem.com/BankService/OpenNewAccountResponse" message="tns:OpenNewAccountResponse"/>
     </operation>
+    <operation name="WithdrawMoney">
+      <input wsam:Action="http://services.mlvBank.upem.com/BankService/WithdrawMoneyRequest" message="tns:WithdrawMoney"/>
+      <output wsam:Action="http://services.mlvBank.upem.com/BankService/WithdrawMoneyResponse" message="tns:WithdrawMoneyResponse"/>
+    </operation>
   </portType>
   <binding name="BankServicePortBinding" type="tns:BankService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-    <operation name="WithdrawMoney">
+    <operation name="ListAccounts">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -78,6 +88,15 @@
       </output>
     </operation>
     <operation name="OpenNewAccount">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="WithdrawMoney">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>

@@ -7,7 +7,7 @@ package com.upem.mlvBank.services;
 
 import com.upem.mlvBank.entities.Compte;
 import com.upem.mlvBank.dao.CompteDAO;
-import java.util.HashMap;
+import java.util.List;
 import javax.inject.Inject;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
@@ -23,12 +23,6 @@ public class BankService {
     @Inject
     private CompteDAO compteDAO;
 
-    private final HashMap<String, Compte> comptes;
-
-    public BankService() {
-        comptes = new HashMap<>();
-    }
-
     /**
      * Web service operation
      */
@@ -36,11 +30,12 @@ public class BankService {
     public boolean WithdrawMoney(@WebParam(name = "WithDrawMoneyAccountID") String AccountID,
             @WebParam(name = "WithDrawMoneyOwnerPassword") String OwnerPassword,
             @WebParam(name = "WithDrawMoneyAmount") int Amount) {
-        if (!comptes.containsKey(AccountID)) {
+        if (compteDAO.getCompteBy(AccountID) == null) {
             return false;
         }
 
-        comptes.get(AccountID).withdrawFromCompte(OwnerPassword, Amount);
+        compteDAO.withdrawMoneyFrom(AccountID, OwnerPassword, Amount);
+        //comptes.get(AccountID).withdrawFromCompte(OwnerPassword, Amount);
 
         //LOG HERE
         return true;
@@ -52,11 +47,11 @@ public class BankService {
     @WebMethod(operationName = "AccountState")
     public int AccountState(@WebParam(name = "AccountStateAccountID") String AccountID,
             @WebParam(name = "AccountStateOwnerPassword") String OwnerPassword) {
-        if (!comptes.containsKey(AccountID)) {
+        if (compteDAO.getCompteBy(AccountID) == null) {
             return -1;
         }
 
-        return comptes.get(AccountID).getAmount(OwnerPassword);
+        return compteDAO.getAccountState(AccountID, OwnerPassword);
     }
 
     /**
@@ -66,11 +61,11 @@ public class BankService {
     public boolean DepositMoney(@WebParam(name = "DepositMoneyAccountID") String AccountID,
             @WebParam(name = "DepositMoneyOwnerPassword") String OwnerPassword,
             @WebParam(name = "DepositMoneyAmount") int Amount) {
-        if (!comptes.containsKey(AccountID)) {
+        if (compteDAO.getCompteBy(AccountID) == null) {
             return false;
         }
 
-        comptes.get(AccountID).depositToCompte(OwnerPassword, Amount);
+        compteDAO.depositMoneyTo(AccountID, OwnerPassword, Amount);
         return true;
     }
 
@@ -79,15 +74,23 @@ public class BankService {
      */
     @WebMethod(operationName = "OpenNewAccount")
     public String OpenNewAccount(@WebParam(name = "OpenAccountOwnerPassword") String OwnerPassword,
-                                @WebParam(name = "OpenNewAccountInitialAmount") int InitialAmount) {
+            @WebParam(name = "OpenNewAccountInitialAmount") int InitialAmount) {
         Compte newCompte = new Compte();
         newCompte.EnableCompte();
         newCompte.setComptePassword("", OwnerPassword);
         newCompte.depositToCompte(OwnerPassword, InitialAmount);
-        
+
         compteDAO.create(newCompte);
-        
+
         return newCompte.getId();
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "ListAccounts")
+    public List<Compte> ListAccounts() {
+        return compteDAO.getAllCompte();
     }
 
     /**

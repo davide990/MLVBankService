@@ -9,6 +9,10 @@
 
   <xs:element name="DepositMoneyResponse" type="tns:DepositMoneyResponse"/>
 
+  <xs:element name="ListAccounts" type="tns:ListAccounts"/>
+
+  <xs:element name="ListAccountsResponse" type="tns:ListAccountsResponse"/>
+
   <xs:element name="OpenNewAccount" type="tns:OpenNewAccount"/>
 
   <xs:element name="OpenNewAccountResponse" type="tns:OpenNewAccountResponse"/>
@@ -16,6 +20,20 @@
   <xs:element name="WithdrawMoney" type="tns:WithdrawMoney"/>
 
   <xs:element name="WithdrawMoneyResponse" type="tns:WithdrawMoneyResponse"/>
+
+  <xs:complexType name="ListAccounts">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="ListAccountsResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:compte" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="compte">
+    <xs:sequence/>
+  </xs:complexType>
 
   <xs:complexType name="OpenNewAccount">
     <xs:sequence>
