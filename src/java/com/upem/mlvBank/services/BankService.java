@@ -33,10 +33,7 @@ public class BankService {
         if (compteDAO.getCompteBy(AccountID) == null) {
             return false;
         }
-
         compteDAO.withdrawMoneyFrom(AccountID, OwnerPassword, Amount);
-        //comptes.get(AccountID).withdrawFromCompte(OwnerPassword, Amount);
-
         //LOG HERE
         return true;
     }
@@ -96,9 +93,38 @@ public class BankService {
     /**
      * Web service operation
      */
-//    @WebMethod(operationName = "DisableAccount")
-//    public int DisableAccount(@WebParam(name = "DisableAccountAccountID") String AccountID, @WebParam(name = "DisableAccountOwnerPassword") String OwnerPassword) {
-//        //TODO write your implementation code here:
-//        return 0;
-//    }
+    @WebMethod(operationName = "GetAccountBy")
+    public Compte GetAccountBy(@WebParam(name = "GetAccountByAccountID") String GetAccountByAccountID) {
+        return compteDAO.getCompteBy(GetAccountByAccountID);
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "DisableAccount")
+    public int DisableAccount(@WebParam(name = "DisableAccountAccountID") String AccountToDisableID,
+            @WebParam(name = "DisableAccountOwnerPassword") String AccoutToDisableOwnerPassword) {
+        Compte the_compte;
+        if ((the_compte = compteDAO.getCompteBy(AccountToDisableID)) == null) {
+            return -1;
+        }
+
+        the_compte.DisableCompte();
+        return 0;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "EnableAccount")
+    public int EnableAccount(@WebParam(name = "EnableAccountAccountID") String AccountToEnableID,
+            @WebParam(name = "EnableAccountOwnerPassword") String AccoutToEnableOwnerPassword) {
+        Compte the_compte;
+        if ((the_compte = compteDAO.getCompteBy(AccountToEnableID)) == null) {
+            return -1;
+        }
+
+        the_compte.EnableCompte();
+        return 0;
+    }
 }

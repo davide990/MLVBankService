@@ -9,6 +9,18 @@
 
   <xs:element name="DepositMoneyResponse" type="tns:DepositMoneyResponse"/>
 
+  <xs:element name="DisableAccount" type="tns:DisableAccount"/>
+
+  <xs:element name="DisableAccountResponse" type="tns:DisableAccountResponse"/>
+
+  <xs:element name="EnableAccount" type="tns:EnableAccount"/>
+
+  <xs:element name="EnableAccountResponse" type="tns:EnableAccountResponse"/>
+
+  <xs:element name="GetAccountBy" type="tns:GetAccountBy"/>
+
+  <xs:element name="GetAccountByResponse" type="tns:GetAccountByResponse"/>
+
   <xs:element name="ListAccounts" type="tns:ListAccounts"/>
 
   <xs:element name="ListAccountsResponse" type="tns:ListAccountsResponse"/>
@@ -33,6 +45,19 @@
 
   <xs:complexType name="compte">
     <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="EnableAccount">
+    <xs:sequence>
+      <xs:element name="EnableAccountAccountID" type="xs:string" minOccurs="0"/>
+      <xs:element name="EnableAccountOwnerPassword" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="EnableAccountResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
   </xs:complexType>
 
   <xs:complexType name="OpenNewAccount">
@@ -73,6 +98,31 @@
   <xs:complexType name="WithdrawMoneyResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GetAccountBy">
+    <xs:sequence>
+      <xs:element name="GetAccountByAccountID" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GetAccountByResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:compte" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DisableAccount">
+    <xs:sequence>
+      <xs:element name="DisableAccountAccountID" type="xs:string" minOccurs="0"/>
+      <xs:element name="DisableAccountOwnerPassword" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DisableAccountResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
     </xs:sequence>
   </xs:complexType>
 
