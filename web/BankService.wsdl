@@ -6,91 +6,95 @@
       <xsd:import namespace="http://services.mlvBank.upem.com/" schemaLocation="BankService_schema1.xsd"/>
     </xsd:schema>
   </types>
-  <message name="AccountState">
-    <part name="parameters" element="tns:AccountState"/>
+  <message name="depositMoneyTo">
+    <part name="parameters" element="tns:depositMoneyTo"/>
   </message>
-  <message name="AccountStateResponse">
-    <part name="parameters" element="tns:AccountStateResponse"/>
+  <message name="withdrawMoneyFrom">
+    <part name="parameters" element="tns:withdrawMoneyFrom"/>
   </message>
-  <message name="DepositMoney">
-    <part name="parameters" element="tns:DepositMoney"/>
+  <message name="getAccountState">
+    <part name="parameters" element="tns:getAccountState"/>
   </message>
-  <message name="DepositMoneyResponse">
-    <part name="parameters" element="tns:DepositMoneyResponse"/>
+  <message name="getAccountStateResponse">
+    <part name="parameters" element="tns:getAccountStateResponse"/>
   </message>
-  <message name="OpenNewAccount">
-    <part name="parameters" element="tns:OpenNewAccount"/>
+  <message name="getAllCompte">
+    <part name="parameters" element="tns:getAllCompte"/>
   </message>
-  <message name="OpenNewAccountResponse">
-    <part name="parameters" element="tns:OpenNewAccountResponse"/>
+  <message name="getAllCompteResponse">
+    <part name="parameters" element="tns:getAllCompteResponse"/>
   </message>
-  <message name="ListAccounts">
-    <part name="parameters" element="tns:ListAccounts"/>
+  <message name="getCompteBy">
+    <part name="parameters" element="tns:getCompteBy"/>
   </message>
-  <message name="ListAccountsResponse">
-    <part name="parameters" element="tns:ListAccountsResponse"/>
+  <message name="getCompteByResponse">
+    <part name="parameters" element="tns:getCompteByResponse"/>
   </message>
-  <message name="WithdrawMoney">
-    <part name="parameters" element="tns:WithdrawMoney"/>
+  <message name="enableAccount">
+    <part name="parameters" element="tns:enableAccount"/>
   </message>
-  <message name="WithdrawMoneyResponse">
-    <part name="parameters" element="tns:WithdrawMoneyResponse"/>
+  <message name="disbleAccount">
+    <part name="parameters" element="tns:disbleAccount"/>
   </message>
-  <message name="GetAccountBy">
-    <part name="parameters" element="tns:GetAccountBy"/>
+  <message name="update">
+    <part name="parameters" element="tns:update"/>
   </message>
-  <message name="GetAccountByResponse">
-    <part name="parameters" element="tns:GetAccountByResponse"/>
+  <message name="delete">
+    <part name="parameters" element="tns:delete"/>
   </message>
-  <message name="DisableAccount">
-    <part name="parameters" element="tns:DisableAccount"/>
-  </message>
-  <message name="DisableAccountResponse">
-    <part name="parameters" element="tns:DisableAccountResponse"/>
-  </message>
-  <message name="EnableAccount">
-    <part name="parameters" element="tns:EnableAccount"/>
-  </message>
-  <message name="EnableAccountResponse">
-    <part name="parameters" element="tns:EnableAccountResponse"/>
+  <message name="create">
+    <part name="parameters" element="tns:create"/>
   </message>
   <portType name="BankService">
-    <operation name="AccountState">
-      <input wsam:Action="http://services.mlvBank.upem.com/BankService/AccountStateRequest" message="tns:AccountState"/>
-      <output wsam:Action="http://services.mlvBank.upem.com/BankService/AccountStateResponse" message="tns:AccountStateResponse"/>
+    <operation name="depositMoneyTo">
+      <input wsam:Action="http://services.mlvBank.upem.com/BankService/depositMoneyTo" message="tns:depositMoneyTo"/>
     </operation>
-    <operation name="DepositMoney">
-      <input wsam:Action="http://services.mlvBank.upem.com/BankService/DepositMoneyRequest" message="tns:DepositMoney"/>
-      <output wsam:Action="http://services.mlvBank.upem.com/BankService/DepositMoneyResponse" message="tns:DepositMoneyResponse"/>
+    <operation name="withdrawMoneyFrom">
+      <input wsam:Action="http://services.mlvBank.upem.com/BankService/withdrawMoneyFrom" message="tns:withdrawMoneyFrom"/>
     </operation>
-    <operation name="OpenNewAccount">
-      <input wsam:Action="http://services.mlvBank.upem.com/BankService/OpenNewAccountRequest" message="tns:OpenNewAccount"/>
-      <output wsam:Action="http://services.mlvBank.upem.com/BankService/OpenNewAccountResponse" message="tns:OpenNewAccountResponse"/>
+    <operation name="getAccountState">
+      <input wsam:Action="http://services.mlvBank.upem.com/BankService/getAccountStateRequest" message="tns:getAccountState"/>
+      <output wsam:Action="http://services.mlvBank.upem.com/BankService/getAccountStateResponse" message="tns:getAccountStateResponse"/>
     </operation>
-    <operation name="ListAccounts">
-      <input wsam:Action="http://services.mlvBank.upem.com/BankService/ListAccountsRequest" message="tns:ListAccounts"/>
-      <output wsam:Action="http://services.mlvBank.upem.com/BankService/ListAccountsResponse" message="tns:ListAccountsResponse"/>
+    <operation name="getAllCompte">
+      <input wsam:Action="http://services.mlvBank.upem.com/BankService/getAllCompteRequest" message="tns:getAllCompte"/>
+      <output wsam:Action="http://services.mlvBank.upem.com/BankService/getAllCompteResponse" message="tns:getAllCompteResponse"/>
     </operation>
-    <operation name="WithdrawMoney">
-      <input wsam:Action="http://services.mlvBank.upem.com/BankService/WithdrawMoneyRequest" message="tns:WithdrawMoney"/>
-      <output wsam:Action="http://services.mlvBank.upem.com/BankService/WithdrawMoneyResponse" message="tns:WithdrawMoneyResponse"/>
+    <operation name="getCompteBy">
+      <input wsam:Action="http://services.mlvBank.upem.com/BankService/getCompteByRequest" message="tns:getCompteBy"/>
+      <output wsam:Action="http://services.mlvBank.upem.com/BankService/getCompteByResponse" message="tns:getCompteByResponse"/>
     </operation>
-    <operation name="GetAccountBy">
-      <input wsam:Action="http://services.mlvBank.upem.com/BankService/GetAccountByRequest" message="tns:GetAccountBy"/>
-      <output wsam:Action="http://services.mlvBank.upem.com/BankService/GetAccountByResponse" message="tns:GetAccountByResponse"/>
+    <operation name="enableAccount">
+      <input wsam:Action="http://services.mlvBank.upem.com/BankService/enableAccount" message="tns:enableAccount"/>
     </operation>
-    <operation name="DisableAccount">
-      <input wsam:Action="http://services.mlvBank.upem.com/BankService/DisableAccountRequest" message="tns:DisableAccount"/>
-      <output wsam:Action="http://services.mlvBank.upem.com/BankService/DisableAccountResponse" message="tns:DisableAccountResponse"/>
+    <operation name="disbleAccount">
+      <input wsam:Action="http://services.mlvBank.upem.com/BankService/disbleAccount" message="tns:disbleAccount"/>
     </operation>
-    <operation name="EnableAccount">
-      <input wsam:Action="http://services.mlvBank.upem.com/BankService/EnableAccountRequest" message="tns:EnableAccount"/>
-      <output wsam:Action="http://services.mlvBank.upem.com/BankService/EnableAccountResponse" message="tns:EnableAccountResponse"/>
+    <operation name="update">
+      <input wsam:Action="http://services.mlvBank.upem.com/BankService/update" message="tns:update"/>
+    </operation>
+    <operation name="delete">
+      <input wsam:Action="http://services.mlvBank.upem.com/BankService/delete" message="tns:delete"/>
+    </operation>
+    <operation name="create">
+      <input wsam:Action="http://services.mlvBank.upem.com/BankService/create" message="tns:create"/>
     </operation>
   </portType>
   <binding name="BankServicePortBinding" type="tns:BankService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-    <operation name="AccountState">
+    <operation name="depositMoneyTo">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+    </operation>
+    <operation name="withdrawMoneyFrom">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+    </operation>
+    <operation name="getAccountState">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -99,7 +103,7 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="DepositMoney">
+    <operation name="getAllCompte">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -108,7 +112,7 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="OpenNewAccount">
+    <operation name="getCompteBy">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -117,50 +121,35 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="ListAccounts">
+    <operation name="enableAccount">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
       </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
     </operation>
-    <operation name="WithdrawMoney">
+    <operation name="disbleAccount">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
       </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
     </operation>
-    <operation name="GetAccountBy">
+    <operation name="update">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
       </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
     </operation>
-    <operation name="DisableAccount">
+    <operation name="delete">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
       </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
     </operation>
-    <operation name="EnableAccount">
+    <operation name="create">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
       </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
     </operation>
   </binding>
   <service name="BankService">

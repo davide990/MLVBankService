@@ -5,126 +5,81 @@
  */
 package com.upem.mlvBank.services;
 
-import com.upem.mlvBank.entities.Compte;
 import com.upem.mlvBank.dao.CompteDAO;
+import com.upem.mlvBank.entities.Compte;
 import java.util.List;
-import javax.inject.Inject;
-import javax.jws.WebService;
+import javax.ejb.EJB;
+import javax.jws.Oneway;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import javax.jws.WebService;
 
 /**
  *
- * @author davide
+ * @author Davide Andrea Guastella <davide.guastella90@gmail.com>
  */
 @WebService(serviceName = "BankService")
 public class BankService {
 
-    @Inject
-    private CompteDAO compteDAO;
+    @EJB
+    private CompteDAO ejbRef;// Add business logic below. (Right-click in editor and choose
+    // "Insert Code > Add Web Service Operation")
 
-    /**
-     * Web service operation
-     */
-    @WebMethod(operationName = "WithdrawMoney")
-    public boolean WithdrawMoney(@WebParam(name = "WithDrawMoneyAccountID") String AccountID,
-            @WebParam(name = "WithDrawMoneyOwnerPassword") String OwnerPassword,
-            @WebParam(name = "WithDrawMoneyAmount") int Amount) {
-        if (compteDAO.getCompteBy(AccountID) == null) {
-            return false;
-        }
-        compteDAO.withdrawMoneyFrom(AccountID, OwnerPassword, Amount);
-        //LOG HERE
-        return true;
+    @WebMethod(operationName = "create")
+    @Oneway
+    public void create(@WebParam(name = "compte") Compte compte) {
+        ejbRef.create(compte);
     }
 
-    /**
-     * Web service operation
-     */
-    @WebMethod(operationName = "AccountState")
-    public int AccountState(@WebParam(name = "AccountStateAccountID") String AccountID,
-            @WebParam(name = "AccountStateOwnerPassword") String OwnerPassword) {
-        if (compteDAO.getCompteBy(AccountID) == null) {
-            return -1;
-        }
-
-        return compteDAO.getAccountState(AccountID, OwnerPassword);
+    @WebMethod(operationName = "update")
+    @Oneway
+    public void update(@WebParam(name = "compte") Compte compte) {
+        ejbRef.update(compte);
     }
 
-    /**
-     * Web service operation
-     */
-    @WebMethod(operationName = "DepositMoney")
-    public boolean DepositMoney(@WebParam(name = "DepositMoneyAccountID") String AccountID,
-            @WebParam(name = "DepositMoneyOwnerPassword") String OwnerPassword,
-            @WebParam(name = "DepositMoneyAmount") int Amount) {
-        if (compteDAO.getCompteBy(AccountID) == null) {
-            return false;
-        }
-
-        compteDAO.depositMoneyTo(AccountID, OwnerPassword, Amount);
-        return true;
+    @WebMethod(operationName = "delete")
+    @Oneway
+    public void delete(@WebParam(name = "compte") Compte compte) {
+        ejbRef.delete(compte);
     }
 
-    /**
-     * Web service operation
-     */
-    @WebMethod(operationName = "OpenNewAccount")
-    public String OpenNewAccount(@WebParam(name = "OpenAccountOwnerPassword") String OwnerPassword,
-            @WebParam(name = "OpenNewAccountInitialAmount") int InitialAmount) {
-        Compte newCompte = new Compte();
-        newCompte.EnableCompte();
-        newCompte.setComptePassword("", OwnerPassword);
-        newCompte.depositToCompte(OwnerPassword, InitialAmount);
-
-        compteDAO.create(newCompte);
-
-        return newCompte.getId();
+    @WebMethod(operationName = "depositMoneyTo")
+    @Oneway
+    public void depositMoneyTo(@WebParam(name = "accountID") String accountID, @WebParam(name = "accountPSW") String accountPSW, @WebParam(name = "amount") int amount) {
+        ejbRef.depositMoneyTo(accountID, accountPSW, amount);
     }
 
-    /**
-     * Web service operation
-     */
-    @WebMethod(operationName = "ListAccounts")
-    public List<Compte> ListAccounts() {
-        return compteDAO.getAllCompte();
+    @WebMethod(operationName = "withdrawMoneyFrom")
+    @Oneway
+    public void withdrawMoneyFrom(@WebParam(name = "accountID") String accountID, @WebParam(name = "accountPSW") String accountPSW, @WebParam(name = "amount") int amount) {
+        ejbRef.withdrawMoneyFrom(accountID, accountPSW, amount);
     }
 
-    /**
-     * Web service operation
-     */
-    @WebMethod(operationName = "GetAccountBy")
-    public Compte GetAccountBy(@WebParam(name = "GetAccountByAccountID") String GetAccountByAccountID) {
-        return compteDAO.getCompteBy(GetAccountByAccountID);
+    @WebMethod(operationName = "getAccountState")
+    public int getAccountState(@WebParam(name = "accountID") String accountID, @WebParam(name = "accountPSW") String accountPSW) {
+        return ejbRef.getAccountState(accountID, accountPSW);
     }
 
-    /**
-     * Web service operation
-     */
-    @WebMethod(operationName = "DisableAccount")
-    public int DisableAccount(@WebParam(name = "DisableAccountAccountID") String AccountToDisableID,
-            @WebParam(name = "DisableAccountOwnerPassword") String AccoutToDisableOwnerPassword) {
-        Compte the_compte;
-        if ((the_compte = compteDAO.getCompteBy(AccountToDisableID)) == null) {
-            return -1;
-        }
-
-        the_compte.DisableCompte();
-        return 0;
+    @WebMethod(operationName = "getAllCompte")
+    public List<Compte> getAllCompte() {
+        return ejbRef.getAllCompte();
     }
 
-    /**
-     * Web service operation
-     */
-    @WebMethod(operationName = "EnableAccount")
-    public int EnableAccount(@WebParam(name = "EnableAccountAccountID") String AccountToEnableID,
-            @WebParam(name = "EnableAccountOwnerPassword") String AccoutToEnableOwnerPassword) {
-        Compte the_compte;
-        if ((the_compte = compteDAO.getCompteBy(AccountToEnableID)) == null) {
-            return -1;
-        }
-
-        the_compte.EnableCompte();
-        return 0;
+    @WebMethod(operationName = "getCompteBy")
+    public Compte getCompteBy(@WebParam(name = "accountID") String accountID) {
+        return ejbRef.getCompteBy(accountID);
     }
+
+    @WebMethod(operationName = "enableAccount")
+    @Oneway
+    public void enableAccount(@WebParam(name = "accountID") String accountID) {
+        ejbRef.enableAccount(accountID);
+    }
+
+    @WebMethod(operationName = "disbleAccount")
+    @Oneway
+    public void disbleAccount(@WebParam(name = "accountID") String accountID) {
+        ejbRef.disableAccount(accountID);
+    }
+    
 }

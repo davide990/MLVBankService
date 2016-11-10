@@ -1,141 +1,120 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <xs:schema version="1.0" targetNamespace="http://services.mlvBank.upem.com/" xmlns:tns="http://services.mlvBank.upem.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:element name="AccountState" type="tns:AccountState"/>
+  <xs:element name="create" type="tns:create"/>
 
-  <xs:element name="AccountStateResponse" type="tns:AccountStateResponse"/>
+  <xs:element name="delete" type="tns:delete"/>
 
-  <xs:element name="DepositMoney" type="tns:DepositMoney"/>
+  <xs:element name="depositMoneyTo" type="tns:depositMoneyTo"/>
 
-  <xs:element name="DepositMoneyResponse" type="tns:DepositMoneyResponse"/>
+  <xs:element name="disbleAccount" type="tns:disbleAccount"/>
 
-  <xs:element name="DisableAccount" type="tns:DisableAccount"/>
+  <xs:element name="enableAccount" type="tns:enableAccount"/>
 
-  <xs:element name="DisableAccountResponse" type="tns:DisableAccountResponse"/>
+  <xs:element name="getAccountState" type="tns:getAccountState"/>
 
-  <xs:element name="EnableAccount" type="tns:EnableAccount"/>
+  <xs:element name="getAccountStateResponse" type="tns:getAccountStateResponse"/>
 
-  <xs:element name="EnableAccountResponse" type="tns:EnableAccountResponse"/>
+  <xs:element name="getAllCompte" type="tns:getAllCompte"/>
 
-  <xs:element name="GetAccountBy" type="tns:GetAccountBy"/>
+  <xs:element name="getAllCompteResponse" type="tns:getAllCompteResponse"/>
 
-  <xs:element name="GetAccountByResponse" type="tns:GetAccountByResponse"/>
+  <xs:element name="getCompteBy" type="tns:getCompteBy"/>
 
-  <xs:element name="ListAccounts" type="tns:ListAccounts"/>
+  <xs:element name="getCompteByResponse" type="tns:getCompteByResponse"/>
 
-  <xs:element name="ListAccountsResponse" type="tns:ListAccountsResponse"/>
+  <xs:element name="update" type="tns:update"/>
 
-  <xs:element name="OpenNewAccount" type="tns:OpenNewAccount"/>
+  <xs:element name="withdrawMoneyFrom" type="tns:withdrawMoneyFrom"/>
 
-  <xs:element name="OpenNewAccountResponse" type="tns:OpenNewAccountResponse"/>
-
-  <xs:element name="WithdrawMoney" type="tns:WithdrawMoney"/>
-
-  <xs:element name="WithdrawMoneyResponse" type="tns:WithdrawMoneyResponse"/>
-
-  <xs:complexType name="ListAccounts">
+  <xs:complexType name="getAllCompte">
     <xs:sequence/>
   </xs:complexType>
 
-  <xs:complexType name="ListAccountsResponse">
+  <xs:complexType name="getAllCompteResponse">
     <xs:sequence>
       <xs:element name="return" type="tns:compte" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 
   <xs:complexType name="compte">
-    <xs:sequence/>
-  </xs:complexType>
-
-  <xs:complexType name="EnableAccount">
     <xs:sequence>
-      <xs:element name="EnableAccountAccountID" type="xs:string" minOccurs="0"/>
-      <xs:element name="EnableAccountOwnerPassword" type="xs:string" minOccurs="0"/>
+      <xs:element name="currency" type="xs:string" minOccurs="0"/>
+      <xs:element name="iban" type="xs:string" minOccurs="0"/>
+      <xs:element name="id" type="xs:long"/>
+      <xs:element name="ownerFirstName" type="xs:string" minOccurs="0"/>
+      <xs:element name="ownerLastName" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="EnableAccountResponse">
+  <xs:complexType name="enableAccount">
+    <xs:sequence>
+      <xs:element name="accountID" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="disbleAccount">
+    <xs:sequence>
+      <xs:element name="accountID" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getAccountState">
+    <xs:sequence>
+      <xs:element name="accountID" type="xs:string" minOccurs="0"/>
+      <xs:element name="accountPSW" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getAccountStateResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:int"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="OpenNewAccount">
+  <xs:complexType name="delete">
     <xs:sequence>
-      <xs:element name="OpenAccountOwnerPassword" type="xs:string" minOccurs="0"/>
-      <xs:element name="OpenNewAccountInitialAmount" type="xs:int"/>
+      <xs:element name="compte" type="tns:compte" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="OpenNewAccountResponse">
+  <xs:complexType name="withdrawMoneyFrom">
     <xs:sequence>
-      <xs:element name="return" type="xs:string" minOccurs="0"/>
+      <xs:element name="accountID" type="xs:string" minOccurs="0"/>
+      <xs:element name="accountPSW" type="xs:string" minOccurs="0"/>
+      <xs:element name="amount" type="xs:int"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="DepositMoney">
+  <xs:complexType name="getCompteBy">
     <xs:sequence>
-      <xs:element name="DepositMoneyAccountID" type="xs:string" minOccurs="0"/>
-      <xs:element name="DepositMoneyOwnerPassword" type="xs:string" minOccurs="0"/>
-      <xs:element name="DepositMoneyAmount" type="xs:int"/>
+      <xs:element name="accountID" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="DepositMoneyResponse">
-    <xs:sequence>
-      <xs:element name="return" type="xs:boolean"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="WithdrawMoney">
-    <xs:sequence>
-      <xs:element name="WithDrawMoneyAccountID" type="xs:string" minOccurs="0"/>
-      <xs:element name="WithDrawMoneyOwnerPassword" type="xs:string" minOccurs="0"/>
-      <xs:element name="WithDrawMoneyAmount" type="xs:int"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="WithdrawMoneyResponse">
-    <xs:sequence>
-      <xs:element name="return" type="xs:boolean"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="GetAccountBy">
-    <xs:sequence>
-      <xs:element name="GetAccountByAccountID" type="xs:string" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="GetAccountByResponse">
+  <xs:complexType name="getCompteByResponse">
     <xs:sequence>
       <xs:element name="return" type="tns:compte" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="DisableAccount">
+  <xs:complexType name="update">
     <xs:sequence>
-      <xs:element name="DisableAccountAccountID" type="xs:string" minOccurs="0"/>
-      <xs:element name="DisableAccountOwnerPassword" type="xs:string" minOccurs="0"/>
+      <xs:element name="compte" type="tns:compte" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="DisableAccountResponse">
+  <xs:complexType name="create">
     <xs:sequence>
-      <xs:element name="return" type="xs:int"/>
+      <xs:element name="compte" type="tns:compte" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="AccountState">
+  <xs:complexType name="depositMoneyTo">
     <xs:sequence>
-      <xs:element name="AccountStateAccountID" type="xs:string" minOccurs="0"/>
-      <xs:element name="AccountStateOwnerPassword" type="xs:string" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="AccountStateResponse">
-    <xs:sequence>
-      <xs:element name="return" type="xs:int"/>
+      <xs:element name="accountID" type="xs:string" minOccurs="0"/>
+      <xs:element name="accountPSW" type="xs:string" minOccurs="0"/>
+      <xs:element name="amount" type="xs:int"/>
     </xs:sequence>
   </xs:complexType>
 </xs:schema>
