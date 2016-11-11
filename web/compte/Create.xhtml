@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCompteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCompteLabel_currency}" for="currency" />
+                    <h:inputText id="currency" value="#{compteController.selected.currency}" title="#{bundle.CreateCompteTitle_currency}" />
+                    <h:outputLabel value="#{bundle.CreateCompteLabel_ownerFirstName}" for="ownerFirstName" />
+                    <h:inputText id="ownerFirstName" value="#{compteController.selected.ownerFirstName}" title="#{bundle.CreateCompteTitle_ownerFirstName}" />
+                    <h:outputLabel value="#{bundle.CreateCompteLabel_ownerLastName}" for="ownerLastName" />
+                    <h:inputText id="ownerLastName" value="#{compteController.selected.ownerLastName}" title="#{bundle.CreateCompteTitle_ownerLastName}" />
+                    <h:outputLabel value="#{bundle.CreateCompteLabel_amount}" for="amount" />
+                    <h:inputText id="amount" value="#{compteController.selected.amount}" title="#{bundle.CreateCompteTitle_amount}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{compteController.create}" value="#{bundle.CreateCompteSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{compteController.prepareList}" value="#{bundle.CreateCompteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateCompteIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

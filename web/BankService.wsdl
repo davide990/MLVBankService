@@ -6,9 +6,6 @@
       <xsd:import namespace="http://services.mlvBank.upem.com/" schemaLocation="BankService_schema1.xsd"/>
     </xsd:schema>
   </types>
-  <message name="depositMoneyTo">
-    <part name="parameters" element="tns:depositMoneyTo"/>
-  </message>
   <message name="withdrawMoneyFrom">
     <part name="parameters" element="tns:withdrawMoneyFrom"/>
   </message>
@@ -36,6 +33,9 @@
   <message name="disbleAccount">
     <part name="parameters" element="tns:disbleAccount"/>
   </message>
+  <message name="depositMoneyTo">
+    <part name="parameters" element="tns:depositMoneyTo"/>
+  </message>
   <message name="update">
     <part name="parameters" element="tns:update"/>
   </message>
@@ -46,9 +46,6 @@
     <part name="parameters" element="tns:create"/>
   </message>
   <portType name="BankService">
-    <operation name="depositMoneyTo">
-      <input wsam:Action="http://services.mlvBank.upem.com/BankService/depositMoneyTo" message="tns:depositMoneyTo"/>
-    </operation>
     <operation name="withdrawMoneyFrom">
       <input wsam:Action="http://services.mlvBank.upem.com/BankService/withdrawMoneyFrom" message="tns:withdrawMoneyFrom"/>
     </operation>
@@ -70,6 +67,9 @@
     <operation name="disbleAccount">
       <input wsam:Action="http://services.mlvBank.upem.com/BankService/disbleAccount" message="tns:disbleAccount"/>
     </operation>
+    <operation name="depositMoneyTo">
+      <input wsam:Action="http://services.mlvBank.upem.com/BankService/depositMoneyTo" message="tns:depositMoneyTo"/>
+    </operation>
     <operation name="update">
       <input wsam:Action="http://services.mlvBank.upem.com/BankService/update" message="tns:update"/>
     </operation>
@@ -82,12 +82,6 @@
   </portType>
   <binding name="BankServicePortBinding" type="tns:BankService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-    <operation name="depositMoneyTo">
-      <soap:operation soapAction=""/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-    </operation>
     <operation name="withdrawMoneyFrom">
       <soap:operation soapAction=""/>
       <input>
@@ -128,6 +122,12 @@
       </input>
     </operation>
     <operation name="disbleAccount">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+    </operation>
+    <operation name="depositMoneyTo">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>

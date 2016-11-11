@@ -45,19 +45,19 @@ public class BankService {
 
     @WebMethod(operationName = "depositMoneyTo")
     @Oneway
-    public void depositMoneyTo(@WebParam(name = "accountID") String accountID, @WebParam(name = "accountPSW") String accountPSW, @WebParam(name = "amount") int amount) {
-        ejbRef.depositMoneyTo(accountID, accountPSW, amount);
+    public void depositMoneyTo(@WebParam(name = "iban") String iban, @WebParam(name = "amount") int amount) {
+        ejbRef.depositMoneyTo(iban, amount);
     }
 
     @WebMethod(operationName = "withdrawMoneyFrom")
     @Oneway
-    public void withdrawMoneyFrom(@WebParam(name = "accountID") String accountID, @WebParam(name = "accountPSW") String accountPSW, @WebParam(name = "amount") int amount) {
-        ejbRef.withdrawMoneyFrom(accountID, accountPSW, amount);
+    public void withdrawMoneyFrom(@WebParam(name = "iban") String iban, @WebParam(name = "amount") int amount) {
+        ejbRef.withdrawMoneyFrom(iban, amount);
     }
 
     @WebMethod(operationName = "getAccountState")
-    public int getAccountState(@WebParam(name = "accountID") String accountID, @WebParam(name = "accountPSW") String accountPSW) {
-        return ejbRef.getAccountState(accountID, accountPSW);
+    public int getAccountState(@WebParam(name = "iban") String iban) {
+        return ejbRef.getAccountState(iban);
     }
 
     @WebMethod(operationName = "getAllCompte")
@@ -66,20 +66,20 @@ public class BankService {
     }
 
     @WebMethod(operationName = "getCompteBy")
-    public Compte getCompteBy(@WebParam(name = "accountID") String accountID) {
-        return ejbRef.getCompteBy(accountID);
+    public Compte getCompteBy(@WebParam(name = "iban") String iban) {
+        return ejbRef.getCompteByIBAN(iban);
     }
 
     @WebMethod(operationName = "enableAccount")
     @Oneway
-    public void enableAccount(@WebParam(name = "accountID") String accountID) {
-        ejbRef.enableAccount(accountID);
+    public void enableAccount(@WebParam(name = "iban") String iban) {
+        ejbRef.enableAccount(iban);
     }
 
     @WebMethod(operationName = "disbleAccount")
     @Oneway
-    public void disbleAccount(@WebParam(name = "accountID") String accountID) {
-        ejbRef.disableAccount(accountID);
+    public void disbleAccount(@WebParam(name = "iban") String iban) {
+        ejbRef.disableAccount(iban);
     }
-    
+
 }

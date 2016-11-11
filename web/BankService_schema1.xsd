@@ -39,6 +39,8 @@
 
   <xs:complexType name="compte">
     <xs:sequence>
+      <xs:element name="amount" type="xs:int"/>
+      <xs:element name="comptePassword" type="xs:string" minOccurs="0"/>
       <xs:element name="currency" type="xs:string" minOccurs="0"/>
       <xs:element name="iban" type="xs:string" minOccurs="0"/>
       <xs:element name="id" type="xs:long"/>
@@ -49,20 +51,19 @@
 
   <xs:complexType name="enableAccount">
     <xs:sequence>
-      <xs:element name="accountID" type="xs:string" minOccurs="0"/>
+      <xs:element name="iban" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
   <xs:complexType name="disbleAccount">
     <xs:sequence>
-      <xs:element name="accountID" type="xs:string" minOccurs="0"/>
+      <xs:element name="iban" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
   <xs:complexType name="getAccountState">
     <xs:sequence>
-      <xs:element name="accountID" type="xs:string" minOccurs="0"/>
-      <xs:element name="accountPSW" type="xs:string" minOccurs="0"/>
+      <xs:element name="iban" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -80,15 +81,14 @@
 
   <xs:complexType name="withdrawMoneyFrom">
     <xs:sequence>
-      <xs:element name="accountID" type="xs:string" minOccurs="0"/>
-      <xs:element name="accountPSW" type="xs:string" minOccurs="0"/>
+      <xs:element name="iban" type="xs:string" minOccurs="0"/>
       <xs:element name="amount" type="xs:int"/>
     </xs:sequence>
   </xs:complexType>
 
   <xs:complexType name="getCompteBy">
     <xs:sequence>
-      <xs:element name="accountID" type="xs:string" minOccurs="0"/>
+      <xs:element name="iban" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -112,8 +112,7 @@
 
   <xs:complexType name="depositMoneyTo">
     <xs:sequence>
-      <xs:element name="accountID" type="xs:string" minOccurs="0"/>
-      <xs:element name="accountPSW" type="xs:string" minOccurs="0"/>
+      <xs:element name="iban" type="xs:string" minOccurs="0"/>
       <xs:element name="amount" type="xs:int"/>
     </xs:sequence>
   </xs:complexType>

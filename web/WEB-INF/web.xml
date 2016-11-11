@@ -10,6 +10,11 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet>
+        <servlet-name>NewWebService</servlet-name>
+        <servlet-class>com.upem.mlvBank.services.BankService</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
         <servlet-name>BankService</servlet-name>
         <servlet-class>com.upem.mlvBank.services.BankService</servlet-class>
         <load-on-startup>1</load-on-startup>
@@ -17,6 +22,10 @@
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewWebService</servlet-name>
+        <url-pattern>/NewWebService</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>BankService</servlet-name>

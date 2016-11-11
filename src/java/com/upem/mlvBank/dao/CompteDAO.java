@@ -14,6 +14,10 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.logging.Logger;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -53,52 +57,61 @@ public class CompteDAO {
         em.remove(compte);
     }
 
-    public void depositMoneyTo(String accountID, String accountPSW, int amount) {
-        logger.log(Level.INFO, "Depositing " + amount + " to account ID: " + accountID);
-        Compte compte = getCompteBy(accountID);
-        compte.depositToCompte(accountPSW, amount);
+    public void depositMoneyTo(String iban, int amount) {
+        logger.log(Level.INFO, "Depositing " + amount + " to account ID: " + iban);
+        Compte compte = getCompteByIBAN(iban);
+        compte.depositToCompte(amount);
         update(compte);
     }
 
-    public void withdrawMoneyFrom(String accountID, String accountPSW, int amount) {
-        logger.log(Level.INFO, "Withdrawing " + amount + " from account ID: " + accountID);
-        Compte compte = getCompteBy(accountID);
-        compte.withdrawFromCompte(accountPSW, amount);
+    public void withdrawMoneyFrom(String iban, int amount) {
+        logger.log(Level.INFO, "Withdrawing " + amount + " from account ID: " + iban);
+        Compte compte = getCompteByIBAN(iban);
+        compte.withdrawFromCompte(amount);
         update(compte);
     }
 
-    public int getAccountState(String accountID, String accountPSW) {
-        return getCompteBy(accountID).getAmount(accountPSW);
+    public int getAccountState(String iban) {
+        return getCompteByIBAN(iban).getAmount();
     }
 
     public List<Compte> getAllCompte() {
-        TypedQuery<Compte> q = em.createQuery("select e from Compte e", Compte.class);
-        return q.getResultList();
+        /*TypedQuery<Compte> q = em.createQuery("select e from Compte e", Compte.class);
+        return q.getResultList();*/
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Compte> compte = builder.createQuery(Compte.class);
+
+        Root<Compte> compteRoot = compte.from(Compte.class); //ROOT
+        compte.select(compteRoot);
+        TypedQuery<Compte> pp = em.createQuery(compte);
+        return pp.getResultList();
+
     }
 
-    public Compte getCompteBy(String accountID) {
-        Compte compte;
-        TypedQuery<Compte> q = em.createQuery("select e from Compte e where e.id = '" + accountID + "'", Compte.class);
+    public Compte getCompteByIBAN(String iban) {
 
-        try {
-            compte = q.getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Compte> compte = builder.createQuery(Compte.class);
 
-        return compte;
+        Root<Compte> compteRoot = compte.from(Compte.class); //ROOT
+
+        Predicate pd = builder.equal(compteRoot.get("iban"), iban);
+
+        compte.select(compteRoot).where(pd);
+        TypedQuery<Compte> pp = em.createQuery(compte);
+        return (Compte) pp.getSingleResult();
     }
 
-    public void enableAccount(String accountID) {
-        logger.log(Level.INFO, "Enabling account ID: " + accountID);
-        Compte compte = getCompteBy(accountID);
+    public void enableAccount(String iban) {
+        logger.log(Level.INFO, "Enabling account ID: " + iban);
+        Compte compte = getCompteByIBAN(iban);
         compte.EnableCompte();
         update(compte);
     }
 
-    public void disbleAccount(String accountID) {
-        logger.log(Level.INFO, "Disabling account ID: " + accountID);
-        Compte compte = getCompteBy(accountID);
+    public void disableAccount(String iban) {
+        logger.log(Level.INFO, "Disabling account ID: " + iban);
+        Compte compte = getCompteByIBAN(iban);
         compte.DisableCompte();
         update(compte);
     }
