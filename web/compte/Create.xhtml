@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
@@ -14,24 +15,24 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <p:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreateCompteLabel_currency}" for="currency" />
-                    <h:inputText id="currency" value="#{compteController.selected.currency}" title="#{bundle.CreateCompteTitle_currency}" />
+                    <p:inputText id="currency" value="#{compteController.selected.currency}" title="#{bundle.CreateCompteTitle_currency}" />
                     <h:outputLabel value="#{bundle.CreateCompteLabel_ownerFirstName}" for="ownerFirstName" />
-                    <h:inputText id="ownerFirstName" value="#{compteController.selected.ownerFirstName}" title="#{bundle.CreateCompteTitle_ownerFirstName}" />
+                    <p:inputText id="ownerFirstName" value="#{compteController.selected.ownerFirstName}" title="#{bundle.CreateCompteTitle_ownerFirstName}" />
                     <h:outputLabel value="#{bundle.CreateCompteLabel_ownerLastName}" for="ownerLastName" />
-                    <h:inputText id="ownerLastName" value="#{compteController.selected.ownerLastName}" title="#{bundle.CreateCompteTitle_ownerLastName}" />
+                    <p:inputText id="ownerLastName" value="#{compteController.selected.ownerLastName}" title="#{bundle.CreateCompteTitle_ownerLastName}" />
                     <h:outputLabel value="#{bundle.CreateCompteLabel_amount}" for="amount" />
-                    <h:inputText id="amount" value="#{compteController.selected.amount}" title="#{bundle.CreateCompteTitle_amount}" />
-                </h:panelGrid>
+                    <p:inputText id="amount" value="#{compteController.selected.amount}" title="#{bundle.CreateCompteTitle_amount}" />
+                </p:panelGrid>
                 <br />
-                <h:commandLink action="#{compteController.create}" value="#{bundle.CreateCompteSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{compteController.prepareList}" value="#{bundle.CreateCompteShowAllLink}" immediate="true"/>
+                <p:commandButton action="#{compteController.create}" value="#{bundle.CreateCompteSaveLink}" ajax="false"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.CreateCompteIndexLink}"/>
+                <p:commandButton action="#{compteController.prepareList}" value="#{bundle.CreateCompteShowAllLink}" ajax="false"/>
+                <br />
+                <br />
+                <p:button outcome="/index" value="#{bundle.CreateCompteIndexLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>

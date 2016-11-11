@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
@@ -14,7 +15,7 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <p:panelGrid columns="2">
                     <h:outputText value="#{bundle.ViewCompteLabel_currency}"/>
                     <h:outputText value="#{compteController.selected.currency}" title="#{bundle.ViewCompteTitle_currency}"/>
                     <h:outputText value="#{bundle.ViewCompteLabel_id}"/>
@@ -27,20 +28,18 @@
                     <h:outputText value="#{compteController.selected.ownerLastName}" title="#{bundle.ViewCompteTitle_ownerLastName}"/>
                     <h:outputText value="#{bundle.ViewCompteLabel_amount}"/>
                     <h:outputText value="#{compteController.selected.amount}" title="#{bundle.ViewCompteTitle_amount}"/>
-                </h:panelGrid>
+                </p:panelGrid>
                 <br />
-                <h:commandLink action="#{compteController.destroyAndView}" value="#{bundle.ViewCompteDestroyLink}"/>
+                <p:commandButton ajax="false" action="#{compteController.destroyAndView}" value="#{bundle.ViewCompteDestroyLink}"/>
+                <br />
+                <p:button outcome="Edit" value="#{bundle.ViewCompteEditLink}"/>
+                <br />
+                <p:commandButton ajax="false" action="#{compteController.prepareCreate}" value="#{bundle.ViewCompteCreateLink}" />
+                <br />
+                <p:commandButton ajax="false" action="#{compteController.prepareList}" value="#{bundle.ViewCompteShowAllLink}"/>
                 <br />
                 <br />
-                <h:link outcome="Edit" value="#{bundle.ViewCompteEditLink}"/>
-                <br />
-                <h:commandLink action="#{compteController.prepareCreate}" value="#{bundle.ViewCompteCreateLink}" />
-                <br />
-                <h:commandLink action="#{compteController.prepareList}" value="#{bundle.ViewCompteShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewCompteIndexLink}"/>
-
+                <p:button outcome="/index" value="#{bundle.ViewCompteIndexLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>

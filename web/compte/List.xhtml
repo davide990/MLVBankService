@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
@@ -19,60 +20,60 @@
                     <h:outputText value="#{compteController.pagination.pageFirstItem + 1}..#{compteController.pagination.pageLastItem + 1}/#{compteController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{compteController.previous}" value="#{bundle.Previous} #{compteController.pagination.pageSize}" rendered="#{compteController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{compteController.next}" value="#{bundle.Next} #{compteController.pagination.pageSize}" rendered="#{compteController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{compteController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
+                    <p:dataTable value="#{compteController.items}" var="item" style="border:solid 1px">
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCompteTitle_currency}"/>
                             </f:facet>
                             <h:outputText value="#{item.currency}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCompteTitle_id}"/>
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCompteTitle_iban}"/>
                             </f:facet>
                             <h:outputText value="#{item.iban}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCompteTitle_ownerFirstName}"/>
                             </f:facet>
                             <h:outputText value="#{item.ownerFirstName}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCompteTitle_ownerLastName}"/>
                             </f:facet>
                             <h:outputText value="#{item.ownerLastName}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCompteTitle_amount}"/>
                             </f:facet>
                             <h:outputText value="#{item.amount}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{compteController.prepareView}" value="#{bundle.ListCompteViewLink}"/>
+                            <p:commandLink ajax="true" update="@all" action="#{compteController.prepareView}" value="#{bundle.ListCompteViewLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{compteController.prepareEdit}" value="#{bundle.ListCompteEditLink}"/>
+                            <p:commandLink ajax="true" update="@all" action="#{compteController.prepareEdit}" value="#{bundle.ListCompteEditLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{compteController.destroy}" value="#{bundle.ListCompteDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
+                            <p:commandLink ajax="true" update="@all" action="#{compteController.destroy}" value="#{bundle.ListCompteDestroyLink}"/>
+                        </p:column>
+                    </p:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{compteController.prepareCreate}" value="#{bundle.ListCompteCreateLink}"/>
+                <p:commandButton action="#{compteController.prepareCreate}" value="#{bundle.ListCompteCreateLink}" ajax="false"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ListCompteIndexLink}"/>
+                <p:button outcome="/index" value="#{bundle.ListCompteIndexLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>
